@@ -1,6 +1,6 @@
 import {useParams} from "react-router";
 import {useEffect} from "react";
-import {fetchSingleProduct} from "../../redux";
+import {fetchSingleProduct, removeSelectedProducts} from "../../redux";
 import {useDispatch, useSelector} from "react-redux";
 import './productDetails.css';
 import BtnGroup from "../btn-group/btnGroup";
@@ -8,13 +8,19 @@ import BtnGroup from "../btn-group/btnGroup";
 export default function ProductDetails() {
     const {productId} = useParams();
 
+    const {singleProduct, isProductsLoading} = useSelector(({products}) => products)
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchSingleProduct(productId));
+        return () => {
+            dispatch(removeSelectedProducts());
+        }
     }, [productId]);
 
-    const singleProduct = useSelector(({products}) => products.singleProduct)
+    if(isProductsLoading) {
+        return <h2>Loading...</h2>
+    }
 
     return (
         singleProduct !== null ? (

@@ -6,7 +6,7 @@ import {
     REMOVE_FROM_WISHLIST,
     ADD_TO_CART,
     REMOVE_FROM_CART,
-    SELECTED_PRODUCT
+    SELECTED_PRODUCT, REMOVE_SELECTED_PRODUCT
 } from '../actionTypes';
 
 const initialState = {
@@ -96,6 +96,12 @@ export const productsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 singleProduct: action.payload
+            };
+        }
+        case REMOVE_SELECTED_PRODUCT : {
+            return {
+                ...state,
+                singleProduct: null
             };
         }
         default:

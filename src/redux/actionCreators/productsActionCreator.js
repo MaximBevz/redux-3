@@ -5,7 +5,8 @@ import {
     RESET_PRODUCTS_LOADING,
     SET_PRODUCTS,
     SET_PRODUCTS_LOADING,
-    SELECTED_PRODUCT
+    SELECTED_PRODUCT,
+    REMOVE_SELECTED_PRODUCT
 } from "../actionTypes";
 
 export const fetchProducts = () => async (dispatch) => {
@@ -46,3 +47,4 @@ export const removeFromWishList = (payload) => ({type: REMOVE_FROM_WISHLIST, pay
 export const addToCart = (payload) => ({type: ADD_TO_CART, payload});
 export const removeFromCart = (payload) => ({type: REMOVE_FROM_CART, payload});
 export const selectedProduct = (payload) => ({type: SELECTED_PRODUCT, payload});
+export const removeSelectedProducts = () => ({type: REMOVE_SELECTED_PRODUCT});
